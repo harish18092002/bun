@@ -1,9 +1,11 @@
 import figlet from "figlet";
+import { initiateDb } from "./pos/main";
 
 console.log("Hello via Bun!");
 const server = Bun.serve({
   port: 3000,
   async fetch(req: Request): Promise<Response> {
+    console.log(await initiateDb(), "<<<<<<<<<<");
     const body = figlet.textSync("Bun!");
     const { method } = req;
     const { pathname } = new URL(req.url);
