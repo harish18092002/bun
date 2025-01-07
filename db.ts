@@ -1,4 +1,4 @@
-import { Client } from "pg";
+import { Client, Pool } from "pg";
 
 const client = new Client({
   user: process.env.BUN_USERNAME,
@@ -9,8 +9,16 @@ const client = new Client({
 });
 
 export async function initiateDb() {
-  await client.query("CREATE TABLE IF NOT EXISTS BUN", (err, res) => {
-    console.log(err, res);
-    client.end();
+  await client.connect();
+
+  await client.query("CREATE TABLE BUN()").catch((err) => {
+    console.error(err);
   });
+  await closeDb();
+  return "Table created!";
+}
+
+export async function closeDb() {
+  await client.end();
+  return "Connection closed!";
 }
