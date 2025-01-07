@@ -10,6 +10,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "figlet": "^1.8.0"
+    "@types/pg": "^8.11.10",
+    "figlet": "^1.8.0",
+    "pg": "^8.13.1"
   }
 }
