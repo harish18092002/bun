@@ -1,6 +1,6 @@
-import { Pool } from "pg";
+import { Client } from "pg";
 
-const pool = new Pool({
+const client = new Client({
   user: process.env.BUN_USERNAME,
   host: process.env.BUN_POS_HOST,
   database: process.env.BUN_DB_NAME,
@@ -8,4 +8,9 @@ const pool = new Pool({
   port: 5432,
 });
 
-export default pool;
+export async function initiateDb() {
+  await client.query("CREATE TABLE IF NOT EXISTS BUN", (err, res) => {
+    console.log(err, res);
+    client.end();
+  });
+}

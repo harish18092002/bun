@@ -1,5 +1,5 @@
 import figlet from "figlet";
-import { initiateDb } from "./pos/main";
+import { initiateDb } from "./db";
 
 console.log("Hello via Bun!");
 const server = Bun.serve({
