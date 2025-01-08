@@ -1,11 +1,7 @@
 import { Client, Pool } from "pg";
 
 const client = new Client({
-  user: process.env.BUN_USERNAME,
-  host: process.env.BUN_POS_HOST,
-  database: process.env.BUN_DB_NAME,
-  password: process.env.BUN_DB_PASSWORD,
-  port: 5432,
+  connectionString: process.env.JWT_DB_URL,
 });
 
 export async function initiateDb() {
@@ -14,7 +10,6 @@ export async function initiateDb() {
   await client.query("CREATE TABLE BUN()").catch((err) => {
     console.error(err);
   });
-  await closeDb();
   return "Table created!";
 }
 

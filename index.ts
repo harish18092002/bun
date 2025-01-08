@@ -9,7 +9,7 @@ const server = Bun.serve({
     const body = figlet.textSync("Bun!");
     const { method } = req;
     const { pathname } = new URL(req.url);
-    if (method === "POST" && pathname === "/hello") {
+    if (method === "POST" && pathname === "/createOrder") {
       //   const sql = neon(process.env.JWT_DB_URL as string);
       console.debug(process.env.JWT_DB_URL);
       //   const rows = await sql`SELECT version()`;
